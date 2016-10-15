@@ -55,4 +55,3 @@ function getAvailability(dateFrom, dateTo) {
         console.log('error => ', e);
     }
 }))();
-//# sourceMappingURL=flypeach.js.map
