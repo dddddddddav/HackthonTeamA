@@ -43,7 +43,7 @@ function getAvailability(dateFrom, dateTo) {
         });
     });
 }
-function eat(dateFrom, dateTo) {
+function exec(dateFrom = moment().add(1, 'day'), dateTo = moment().add(2, 'day')) {
     return __awaiter(this, void 0, void 0, function* () {
         //因為格式不確定所以指定為 any (即一般 json 物件)
         let data = yield getAvailability(dateFrom, dateTo);
@@ -67,20 +67,12 @@ function eat(dateFrom, dateTo) {
             //切出價錢
             let price = parseFloat(priceString.replace(new RegExp(`${currencyCode}|\\$|,|~`, 'g'), ''));
             results.push({
-                date, weekDay, currencyCode, price
+                date, weekDay, currencyCode, price,
+                source: '樂桃'
             });
         });
         return results;
     });
 }
-;
-function default_1(dateFrom = moment().add(1, 'day'), dateTo = moment().add(2, "day")) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let results = yield eat(dateFrom, dateTo);
-        console.log(results);
-        //TODO: 模組主邏輯處理 (資料庫部分)
-    });
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = default_1;
+exports.exec = exec;
 ;

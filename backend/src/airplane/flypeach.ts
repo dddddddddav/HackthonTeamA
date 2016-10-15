@@ -40,14 +40,7 @@ async function getAvailability(dateFrom: Date | moment.Moment, dateTo: Date | mo
     });
 }
 
-declare class Result {
-    date: string;
-    weekDay: string;
-    price: number;
-    currencyCode: string;
-}
-
-async function eat(dateFrom: Date | moment.Moment, dateTo: Date | moment.Moment): Promise<Result[]> {
+export async function exec(dateFrom: Date | moment.Moment = moment().add(1, 'day'), dateTo: Date | moment.Moment = moment().add(2, 'day')): Promise<AirplaneResult[]> {
     //因為格式不確定所以指定為 any (即一般 json 物件)
     let data: any = await getAvailability(dateFrom, dateTo);
 
@@ -59,7 +52,7 @@ async function eat(dateFrom: Date | moment.Moment, dateTo: Date | moment.Moment)
 
     let $ = cheerio.load(html);
 
-    let results: Result[] = [];
+    let results: AirplaneResult[] = [];
 
     $(".showdateselect").each((i, elem) => {
         //抽出日期 - 星期
@@ -81,16 +74,11 @@ async function eat(dateFrom: Date | moment.Moment, dateTo: Date | moment.Moment)
         let price = parseFloat(priceString.replace(new RegExp(`${currencyCode}|\\$|,|~`, 'g'), ''));
 
         results.push({
-            date, weekDay, currencyCode, price
+            date, weekDay, currencyCode, price,
+            source: '樂桃'
         });
 
     });
 
     return results;
-};
-
-export default async function (dateFrom: Date | moment.Moment = moment().add(1, 'day'), dateTo: Date | moment.Moment = moment().add(2, "day")) {
-    let results = await eat(dateFrom, dateTo);
-    console.log(results);
-    //TODO: 模組主邏輯處理 (資料庫部分)
 };
