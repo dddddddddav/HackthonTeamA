@@ -8,8 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const request = require('request');
-const fs = require('fs');
-const path = require('path');
+const cheerio = require('cheerio');
 const moment = require('moment');
 function getAvailability(dateFrom, dateTo) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -44,14 +43,44 @@ function getAvailability(dateFrom, dateTo) {
         });
     });
 }
-(() => __awaiter(this, void 0, void 0, function* () {
-    try {
-        let data = yield getAvailability(new Date(2016, 10, 17), new Date(2016, 10, 18));
+function eat(dateFrom, dateTo) {
+    return __awaiter(this, void 0, void 0, function* () {
+        //因為格式不確定所以指定為 any (即一般 json 物件)
+        let data = yield getAvailability(dateFrom, dateTo);
         let html = data.d;
-        let out = path.join(__dirname, `out_${Date.now()}.html`);
-        fs.writeFileSync(out, html);
-    }
-    catch (e) {
-        console.log('error => ', e);
-    }
-}))();
+        // console.log(html);
+        // let out = path.join(__dirname, `out_${Date.now()}.html`);
+        // fs.writeFileSync(out, html);
+        let $ = cheerio.load(html);
+        let results = [];
+        $(".showdateselect").each((i, elem) => {
+            //抽出日期 - 星期
+            let dayString = $(elem).find(".flighttimeSelect").first().clone().children().remove().end().text();
+            //切出日期
+            let date = new RegExp("\\d{1,2}\\/\\d{1,2}").exec(dayString)[0];
+            //切出星期
+            let weekDay = new RegExp("\\(.{3}\\)").exec(dayString)[0].replace(/\(|\)/g, '');
+            //抽出價錢
+            let priceString = $(elem).find('.price').first().text().replace(/\s/g, '');
+            //切出幣別
+            let currencyCode = priceString.split('$')[0];
+            //切出價錢
+            let price = parseFloat(priceString.replace(new RegExp(`${currencyCode}|\\$|,|~`, 'g'), ''));
+            results.push({
+                date, weekDay, currencyCode, price
+            });
+        });
+        return results;
+    });
+}
+;
+function default_1(dateFrom = moment().add(1, 'day'), dateTo = moment().add(2, "day")) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let results = yield eat(dateFrom, dateTo);
+        console.log(results);
+        //TODO: 模組主邏輯處理 (資料庫部分)
+    });
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = default_1;
+;

@@ -40,15 +40,57 @@ async function getAvailability(dateFrom: Date | moment.Moment, dateTo: Date | mo
     });
 }
 
-(async () => {
-    try {
-        let data: any = await getAvailability(new Date(2016, 10, 17), new Date(2016, 10, 18));
+declare class Result {
+    date: string;
+    weekDay: string;
+    price: number;
+    currencyCode: string;
+}
 
-        let html = data.d;
-        let out = path.join(__dirname, `out_${Date.now()}.html`);
+async function eat(dateFrom: Date | moment.Moment, dateTo: Date | moment.Moment): Promise<Result[]> {
+    //因為格式不確定所以指定為 any (即一般 json 物件)
+    let data: any = await getAvailability(dateFrom, dateTo);
 
-        fs.writeFileSync(out, html);
-    } catch (e) {
-        console.log('error => ', e);
-    }
-})();
+    let html = data.d;
+
+    // console.log(html);
+    // let out = path.join(__dirname, `out_${Date.now()}.html`);
+    // fs.writeFileSync(out, html);
+
+    let $ = cheerio.load(html);
+
+    let results: Result[] = [];
+
+    $(".showdateselect").each((i, elem) => {
+        //抽出日期 - 星期
+        let dayString = $(elem).find(".flighttimeSelect").first().clone().children().remove().end().text();
+
+        //切出日期
+        let date = new RegExp("\\d{1,2}\\/\\d{1,2}").exec(dayString)[0];
+
+        //切出星期
+        let weekDay = new RegExp("\\(.{3}\\)").exec(dayString)[0].replace(/\(|\)/g, '');
+
+        //抽出價錢
+        let priceString = $(elem).find('.price').first().text().replace(/\s/g, '');
+
+        //切出幣別
+        let currencyCode = priceString.split('$')[0];
+
+        //切出價錢
+        let price = parseFloat(priceString.replace(new RegExp(`${currencyCode}|\\$|,|~`, 'g'), ''));
+
+        results.push({
+            date, weekDay, currencyCode, price
+        });
+
+    });
+
+    return results;
+};
+
+export default async function (dateFrom: Date | moment.Moment = moment().add(1, 'day'), dateTo: Date | moment.Moment = moment().add(2, "day")) {
+    let results = await eat(dateFrom, dateTo);
+    console.log(results);
+    //TODO: 模組主邏輯處理 (資料庫部分)
+};
