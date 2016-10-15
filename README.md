@@ -4,9 +4,7 @@
 
 ### 準備
 
-切換到 backend 資料夾中
-
-Terminal
+切換到 backend 資料夾中，在 Terminal 依序執行
 
 ```bash
 //安裝相依套件
