@@ -49,7 +49,7 @@ function exec(dateFrom = moment().add(1, 'day'), dateTo = moment().add(2, 'day')
         let data = yield getAvailability(dateFrom, dateTo);
         let html = data.d;
         // console.log(html);
-        // let out = path.join(__dirname, `out_${Date.now()}.html`);
+        // let out = path.join(__dirname, `flypeach_${Date.now()}.html`);
         // fs.writeFileSync(out, html);
         let $ = cheerio.load(html);
         let results = [];
