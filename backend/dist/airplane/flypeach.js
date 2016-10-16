@@ -54,13 +54,13 @@ function exec(dateFrom = moment().add(1, 'day'), dateTo = moment().add(2, 'day')
         let $ = cheerio.load(html);
         let results = [];
         $(".showdateselect").each((i, elem) => {
-            //抽出日期 - 星期
+            //抽出日期 - 星期 ... ex: 10/17 (Mon) 
             let dayString = $(elem).find(".flighttimeSelect").first().clone().children().remove().end().text();
             //切出日期
             let date = new RegExp("\\d{1,2}\\/\\d{1,2}").exec(dayString)[0];
             //切出星期
             let weekDay = new RegExp("\\(.{3}\\)").exec(dayString)[0].replace(/\(|\)/g, '');
-            //抽出價錢
+            //抽出幣別 - 價錢 ... ex: NT$3,800~
             let priceString = $(elem).find('.price').first().text().replace(/\s/g, '');
             //切出幣別
             let currencyCode = priceString.split('$')[0];

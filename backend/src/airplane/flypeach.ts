@@ -55,7 +55,7 @@ export async function exec(dateFrom: Date | moment.Moment = moment().add(1, 'day
     let results: AirplaneResult[] = [];
 
     $(".showdateselect").each((i, elem) => {
-        //抽出日期 - 星期
+        //抽出日期 - 星期 ... ex: 10/17 (Mon) 
         let dayString = $(elem).find(".flighttimeSelect").first().clone().children().remove().end().text();
 
         //切出日期
@@ -64,7 +64,7 @@ export async function exec(dateFrom: Date | moment.Moment = moment().add(1, 'day
         //切出星期
         let weekDay = new RegExp("\\(.{3}\\)").exec(dayString)[0].replace(/\(|\)/g, '');
 
-        //抽出價錢
+        //抽出幣別 - 價錢 ... ex: NT$3,800~
         let priceString = $(elem).find('.price').first().text().replace(/\s/g, '');
 
         //切出幣別
