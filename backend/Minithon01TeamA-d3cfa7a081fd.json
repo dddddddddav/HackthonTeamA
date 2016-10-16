@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "minithon01teama",
+  "private_key_id": "d3cfa7a081fd056d9ee69f3e30fb97659794f3ce",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQDBBH/PLHUEeVPp\n4Pw1EgisbPd+WnJPuMnsfS42xv6p6VNqOiEXJuHu0lSf54PZSFI1jjlvEM/RPHNp\nj1orGw6ICpByGyBX10wy/D9FkMcJIyEO/Zn6iAMiOJ/kmNTOICb+fpFg+wE8EfmT\n1PsdthsW0a6cayI5esjLFZkj1XOvPL0ConBTN8K4ItHi6gA/BSp8a0RMtATeS/2u\nTnFbSKBh4OhwUgvAHLYapu4gF3JZa7Mw4ubpplQw2AszDALBPo1MhqZz7sF18kVC\nqo3GRl5UJbj+QfvTGfL2xaiVSOqepnGzBCDxuaAIY/o8skpqhwRbVMPARa2fcR5a\n5phHODKFAgMBAAECggEADEsLENjWAxjvHUA1D/Q8FS9DfAqqqSUtxyAZ52c5JP01\nUNiu7tiNHzbKKP0Hyrjuc3bBda9ubPcaqqh0p7YrcMKrfHj50F5n/f9O0FFuO8i+\n/ENuoSQ0fuN4W4jYVOB7W04YWELkSz0h1iaEb9n/U667Hj88iMinLTgM7tlTat+o\n71Srye9eBoTLnq15898/YVfsrtIwgflZf3Go5e8r5la/YkV9IMQw29o9vcnvbCvP\n/y7vMBPIS/YA4HvDHGabuWXe6Wpgr3NAqf5NQHr4C5YOh9AmLnHZuUZdLJNSinC/\nV/i7W3MuA5XSw8WhWOKBZwcq/eAPcwSONJSGrpSk6QKBgQD5/buxSmx45Pdtp3PP\nFDaInZP6DMbEi7poKgSrnNuZ3MDlaiPBI7VG2nMPBbKNjdEibBhUkVL3r0oqDD86\n4gkoYWTehkXam4nxhb4qmhJdIxxKoI29QDUInaUn/5cQ/dzVirMu7xahMiEN8iPY\nbRip/nb/DDUXwK5aB+p787bkhwKBgQDFqDEDE2UckZ3UIl74SoDou+yhyUHO2SPV\nAhIP252cUque3iOIqdDy3eGWurxm0BEMeclSf2VeutHoHRH8+bijG9q9TOQFCgFI\nQPkw1Rkb5fXMNkmG6MHSukWE8WrCViD1x+XHMHrqy7jniDt0qDBEbzsdU1dICPT7\n8arUYIx/kwJ/Lt9kUdmifQhxXB4JmMoxb2wcUsYSfse0K9O1DHhctHyvrlQ4X/5R\n/vb2m9p1oBT3IX0jErgs1kQHo9qoAGJhVTDtuMt0TYjcVGy/Oz2oM85hf5ya9uET\nEIp+bQF/UbBHt8JJ1oL9uzuq9vJvxiSuezE7HpcrXUjDaB4T2SnZIQKBgDljP/e4\npd7JmJ2C7TgBybPI/Eds+6JnATRTSZM5HGXKyvFxZbfENlqNeXYd+Z2QQ6LvqTg+\nrNv4OgG+jv54MteIutXDgWDFKuIjmzZGaOfkuJz2FhsJcV0RoCWdQnXyM9eollpj\nBQ0u4Ry4PSr9uiXkdbFqBSlxEFAmNoc7EQ/pAoGAZJFBMucYBCJ8rkloZbqO8Wc4\n/8qRwx2FfHGU/mDjJxtuVjN7ooyWOioYz6lbPyu2EfLPyLQlBImhKieZq3pk8hjq\n50TV9lPQHbf9zJhbWnNqRLmxhFd6ZxBwQ8rh8uxefKjsNLfQtSKPJR2TJHWg2pPB\n4MyE9dD35cNlij9zKqQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "crawler-api@minithon01teama.iam.gserviceaccount.com",
+  "client_id": "114677394595460708085",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/crawler-api%40minithon01teama.iam.gserviceaccount.com"
+}
