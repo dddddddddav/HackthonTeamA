@@ -5,4 +5,4 @@ install:
   - cd backend 
   - npm install 
 script:
-  - npm run watch 
+  - npm run watch  
